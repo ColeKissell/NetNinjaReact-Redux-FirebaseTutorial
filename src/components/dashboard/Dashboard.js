@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
 
 
-    const { goals, auth } = this.props;
+    const { goals, auth, notifications } = this.props;
     if (!auth.uid) return <Redirect to='/signin' /> 
 
     return (
@@ -23,7 +23,7 @@ class Dashboard extends Component {
             <GoalList goals={goals} />
           </div>
           <div className="col s12 m5 offset-m1">
-            <Notifications />
+            <Notifications notifications={notifications} />
           </div>
         </div>
       </div>
@@ -37,13 +37,15 @@ const mapStateToProps = (state) => {
   // console.log(state);
   return {
     goals: state.firestore.ordered.Goals,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    notifications: state.firestore.ordered.notifications
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'Goals' }
+    { collection: 'Goals', orderBy: ['createdAt', 'desc'] },
+    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']}
   ])
 )(Dashboard)

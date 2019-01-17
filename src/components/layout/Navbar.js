@@ -10,12 +10,22 @@ const Navbar = (props) => {
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;
 
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to='/' className="brand-logo">MarioPlan</Link>
-        {links}
-      </div>
-    </nav>
+    <div>
+      <nav className="nav-wrapper grey darken-3">
+        <div className="container">
+          <Link to='/' className="brand-logo">Poster Thing</Link>
+          {links}
+        </div>
+      </nav>
+    <p>This project was a practice project done following The Net Ninja's React, Redux & Firebase App Tutorial</p>
+    <a href="https://www.youtube.com/watch?v=Oi4v5uxTY5o&list=PL4cUxeGkcC9iWstfXntcj8f-dFZ4UtlN3">
+    <button className="waves-effect waves-light btn-large #ab47bc purple lighten-1">
+    Check out the tutorial here
+    </button>
+      
+    </a>
+    </div>
+
   )
 }
 
